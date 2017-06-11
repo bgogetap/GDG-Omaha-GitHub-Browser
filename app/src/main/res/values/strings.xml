@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">GitHub Browser</string>
+    <string name="creation_date">Creation Date</string>
+    <string name="contributors">Contributors</string>
+    <string name="content_description_avatar_image">Avatar Image</string>
+    <string name="last_updated">Last Updated</string>
 </resources>
