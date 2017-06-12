@@ -9,7 +9,7 @@ import com.gdgomaha.githubbrowser.model.Repo
 import com.gdgomaha.githubbrowser.utils.SimpleDiffCallback
 import java.util.*
 
-class RepoListAdapter constructor(private val presenter: RepoListPresenter) : RecyclerView.Adapter<RepoViewHolder>() {
+class RepoListAdapter constructor(private val repoSelected: (Repo) -> Unit) : RecyclerView.Adapter<RepoViewHolder>() {
 
     private val data = ArrayList<Repo>()
 
@@ -27,7 +27,7 @@ class RepoListAdapter constructor(private val presenter: RepoListPresenter) : Re
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RepoViewHolder {
         val view = viewGroup inflate R.layout.view_repo_list_item
-        return RepoViewHolder(view, presenter)
+        return RepoViewHolder(view, repoSelected)
     }
 
     override fun onBindViewHolder(repoViewHolder: RepoViewHolder, position: Int) {

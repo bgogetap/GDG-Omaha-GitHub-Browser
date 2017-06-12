@@ -22,7 +22,7 @@ public final class RepoListFragment extends BaseFragment {
 
     @Override protected void onViewBound() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new RepoListAdapter(presenter));
+        recyclerView.setAdapter(new RepoListAdapter(presenter.getSelectedListener()));
     }
 
     @Override protected int layoutRes() {
