@@ -9,10 +9,8 @@ public final class Repo implements SimpleDiffCallback.RecyclerItem {
 
     private long id;
     private String name;
-    @SerializedName("full_name") private String fullName;
     private String description;
     @SerializedName("stargazers_count") private long stargazersCount;
-    private String language;
     @SerializedName("forks_count") private long forksCount;
     private Owner owner;
     @SerializedName("contributors_url") private String contributorsUrl;
@@ -27,20 +25,12 @@ public final class Repo implements SimpleDiffCallback.RecyclerItem {
         return name;
     }
 
-    public String getFullName() {
-        return fullName;
-    }
-
     public String getDescription() {
         return description;
     }
 
     public long getStargazersCount() {
         return stargazersCount;
-    }
-
-    public String getLanguage() {
-        return language;
     }
 
     public long getForksCount() {
@@ -77,9 +67,7 @@ public final class Repo implements SimpleDiffCallback.RecyclerItem {
         if (stargazersCount != repo.stargazersCount) return false;
         if (forksCount != repo.forksCount) return false;
         if (!name.equals(repo.name)) return false;
-        if (!fullName.equals(repo.fullName)) return false;
         if (!description.equals(repo.description)) return false;
-        if (!language.equals(repo.language)) return false;
         if (!owner.equals(repo.owner)) return false;
         if (!contributorsUrl.equals(repo.contributorsUrl)) return false;
         if (!createdDate.equals(repo.createdDate)) return false;
@@ -89,10 +77,8 @@ public final class Repo implements SimpleDiffCallback.RecyclerItem {
     @Override public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + name.hashCode();
-        result = 31 * result + fullName.hashCode();
         result = 31 * result + description.hashCode();
         result = 31 * result + (int) (stargazersCount ^ (stargazersCount >>> 32));
-        result = 31 * result + language.hashCode();
         result = 31 * result + (int) (forksCount ^ (forksCount >>> 32));
         result = 31 * result + owner.hashCode();
         result = 31 * result + contributorsUrl.hashCode();
