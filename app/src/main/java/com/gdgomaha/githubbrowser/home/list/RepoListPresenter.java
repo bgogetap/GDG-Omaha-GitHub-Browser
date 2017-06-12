@@ -11,7 +11,7 @@ import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
-@ScreenScope final class RepoListPresenter {
+@ScreenScope public final class RepoListPresenter {
 
     private final Navigator navigator;
 

@@ -13,7 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-final class RepoViewHolder extends RecyclerView.ViewHolder {
+public final class RepoViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.tv_repo_name) TextView repoNameText;
     @BindView(R.id.tv_repo_description) TextView repoDescriptionText;
