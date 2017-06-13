@@ -3,6 +3,7 @@ package com.gdgomaha.githubbrowser.home.list
 import com.gdgomaha.githubbrowser.data.RepoRepository
 import com.gdgomaha.githubbrowser.di.ForScreen
 import com.gdgomaha.githubbrowser.di.ScreenScope
+import com.gdgomaha.githubbrowser.extensions.plus
 import com.gdgomaha.githubbrowser.home.Navigator
 import com.gdgomaha.githubbrowser.model.Repo
 import com.gdgomaha.githubbrowser.utils.DisposableManager
@@ -16,9 +17,9 @@ import javax.inject.Inject
         viewModel: RepoListViewModel) {
 
     init {
-        disposableManager.add(repoRepository.trendingRepos
+        disposableManager + repoRepository.trendingRepos
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ repos, error -> viewModel.processRepos(repos, error) }))
+                .subscribe({ repos, error -> viewModel.processRepos(repos, error) })
     }
 
     val selectedListener = fun (repo: Repo) {

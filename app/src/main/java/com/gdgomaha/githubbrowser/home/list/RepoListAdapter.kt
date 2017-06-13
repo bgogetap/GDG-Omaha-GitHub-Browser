@@ -9,7 +9,7 @@ import com.gdgomaha.githubbrowser.model.Repo
 import com.gdgomaha.githubbrowser.utils.SimpleDiffCallback
 import java.util.*
 
-class RepoListAdapter constructor(private val repoSelected: (Repo) -> Unit) : RecyclerView.Adapter<RepoViewHolder>() {
+class RepoListAdapter (private val repoSelected: (Repo) -> Unit) : RecyclerView.Adapter<RepoViewHolder>() {
 
     private val data = ArrayList<Repo>()
 

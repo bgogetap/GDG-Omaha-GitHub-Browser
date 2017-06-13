@@ -10,7 +10,7 @@ import com.gdgomaha.githubbrowser.R
 import com.gdgomaha.githubbrowser.model.Repo
 import java.text.NumberFormat
 
-class RepoViewHolder constructor(itemView: View, private val repoSelected: (Repo) -> Unit) : RecyclerView.ViewHolder(itemView) {
+class RepoViewHolder (itemView: View, private val repoSelected: (Repo) -> Unit) : RecyclerView.ViewHolder(itemView) {
 
     @BindView(R.id.tv_repo_name) lateinit var repoNameText: TextView
     @BindView(R.id.tv_repo_description) lateinit var repoDescriptionText: TextView
