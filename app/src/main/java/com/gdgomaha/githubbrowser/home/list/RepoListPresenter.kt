@@ -17,7 +17,7 @@ import javax.inject.Inject
         viewModel: RepoListViewModel) {
 
     init {
-        disposableManager + repoRepository.trendingRepos
+        disposableManager + repoRepository.getTrendingRepos()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ repos, error -> viewModel.processRepos(repos, error) })
     }
