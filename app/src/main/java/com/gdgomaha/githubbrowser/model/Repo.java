@@ -53,8 +53,8 @@ public final class Repo implements SimpleDiffCallback.RecyclerItem {
         return updatedDate;
     }
 
-    @Override public int itemId() {
-        return (int) getId();
+    @Override public long itemId() {
+        return getId();
     }
 
     @Override public boolean equals(Object o) {
