@@ -100,12 +100,7 @@ public final class RepoRepository {
     private void refreshMap(List<Repo> repos) {
         repoCache.clear();
         for (Repo repo : repos) {
-            List<Repo> reposForOwner = repoCache.get(repo.getOwner().getLogin());
-            if (reposForOwner == null) {
-                reposForOwner = new ArrayList<>();
-                repoCache.put(repo.getOwner().getLogin(), reposForOwner);
-            }
-            reposForOwner.add(repo);
+            addToMap(repo);
         }
     }
 
