@@ -9,7 +9,5 @@ data class Contributor(
         @SerializedName("avatar_url") val avatarUrl: String?
 ) : SimpleDiffCallback.RecyclerItem {
 
-    override fun itemId(): Int {
-        return id.toInt()
-    }
+    override fun itemId() = id
 }

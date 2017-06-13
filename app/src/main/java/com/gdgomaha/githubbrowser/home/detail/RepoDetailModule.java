@@ -1,6 +1,10 @@
 package com.gdgomaha.githubbrowser.home.detail;
 
 import com.gdgomaha.githubbrowser.di.ScreenModule;
+import com.gdgomaha.githubbrowser.di.ScreenScope;
+import com.jakewharton.rxrelay2.PublishRelay;
+
+import java.util.Set;
 
 import javax.inject.Named;
 
@@ -28,5 +32,11 @@ public final class RepoDetailModule {
     @Named("repo")
     String provideRepoName() {
         return repoName;
+    }
+
+    @Provides
+    @ScreenScope
+    PublishRelay<Set<String>> provideStarsUpdatedRelay() {
+        return PublishRelay.create();
     }
 }

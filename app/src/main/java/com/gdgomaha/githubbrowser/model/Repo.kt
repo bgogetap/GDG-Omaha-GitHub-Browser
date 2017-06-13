@@ -17,7 +17,6 @@ data class Repo(
         @SerializedName("updated_at") val updatedDate: ZonedDateTime
 ) : SimpleDiffCallback.RecyclerItem {
 
-    override fun itemId(): Int {
-        return id.toInt()
-    }
+    override fun itemId() = id
+
 }

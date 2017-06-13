@@ -32,6 +32,7 @@ public final class RepoDetailFragment extends BaseFragment {
 
     @Inject RepoDetailViewModel viewModel;
     @Inject RepoDetailPresenter presenter;
+    @Inject ContributorAdapter adapter;
 
     @BindView(R.id.tv_repo_name) TextView repoNameText;
     @BindView(R.id.tv_repo_description) TextView repoDescriptionText;
@@ -44,7 +45,7 @@ public final class RepoDetailFragment extends BaseFragment {
 
     @Override protected void onViewBound() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new ContributorAdapter());
+        recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
     }
 

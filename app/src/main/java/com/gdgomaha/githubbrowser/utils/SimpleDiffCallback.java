@@ -32,6 +32,6 @@ public final class SimpleDiffCallback extends DiffUtil.Callback {
 
     public interface RecyclerItem {
 
-        int itemId();
+        long itemId();
     }
 }
