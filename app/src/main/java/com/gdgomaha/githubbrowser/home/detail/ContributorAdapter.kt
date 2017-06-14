@@ -2,9 +2,9 @@ package com.gdgomaha.githubbrowser.home.detail
 
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.gdgomaha.githubbrowser.R
+import com.gdgomaha.githubbrowser.extensions.inflate
 import com.gdgomaha.githubbrowser.model.Contributor
 import com.gdgomaha.githubbrowser.utils.SimpleDiffCallback
 import com.jakewharton.rxrelay2.PublishRelay
@@ -32,8 +32,7 @@ class ContributorAdapter @Inject constructor(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContributorViewHolder {
-        return ContributorViewHolder(LayoutInflater.from(parent.context)
-                .inflate(R.layout.view_user_list_item, parent, false), favoriteService)
+        return ContributorViewHolder(parent.inflate(R.layout.view_user_list_item), favoriteService)
     }
 
     override fun onBindViewHolder(holder: ContributorViewHolder, position: Int) {

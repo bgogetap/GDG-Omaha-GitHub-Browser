@@ -23,7 +23,7 @@ import javax.inject.Named
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSuccess({ viewModel.processRepo(it) })
                 .observeOn(Schedulers.io())
-                .flatMap<List<Contributor>> { (_, _, _, _, _, _, contributorsUrl) -> repoRepository.getContributors(contributorsUrl) }
+                .flatMap<List<Contributor>> { repoRepository.getContributors(it.contributorsUrl) }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ contributors, error -> viewModel.processContributors(contributors, error) }))
     }
