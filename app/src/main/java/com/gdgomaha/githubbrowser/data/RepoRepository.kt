@@ -45,14 +45,10 @@ class RepoRepository @Inject constructor(private val service: RepoService) {
 
     private fun cachedIndividual(owner: String, repoName: String): Maybe<Repo> {
         return Maybe.create<Repo> { e ->
-            repoCache[owner]?.let {
-                it.firstOrNull { it.name == repoName }?.let {
-                    e.onSuccess(it)
-                    e.onComplete()
-                    return@create
-                }
-            }
-            e.onComplete()
+            repoCache[owner]?.firstOrNull { it.name == repoName }?.let {
+                e.onSuccess(it)
+                e.onComplete()
+            } ?: e.onComplete()
         }
     }
 
