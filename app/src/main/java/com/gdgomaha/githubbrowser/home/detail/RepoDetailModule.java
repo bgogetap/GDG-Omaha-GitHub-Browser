@@ -4,8 +4,6 @@ import com.gdgomaha.githubbrowser.di.ScreenModule;
 import com.gdgomaha.githubbrowser.di.ScreenScope;
 import com.jakewharton.rxrelay2.PublishRelay;
 
-import java.util.Set;
-
 import javax.inject.Named;
 
 import dagger.Module;
@@ -36,7 +34,7 @@ public final class RepoDetailModule {
 
     @Provides
     @ScreenScope
-    PublishRelay<Set<String>> provideStarsUpdatedRelay() {
+    PublishRelay<Boolean> provideStarsUpdatedRelay() {
         return PublishRelay.create();
     }
 }

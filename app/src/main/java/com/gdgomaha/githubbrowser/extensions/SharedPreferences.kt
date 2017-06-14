@@ -3,54 +3,30 @@ package com.gdgomaha.githubbrowser.extensions
 import android.content.SharedPreferences
 import com.gdgomaha.githubbrowser.model.Contributor
 
-const val STARRED_CONTRIBUTORS = "starred_contributors"
+const val FAVORITE_KEY = "favorited_contributors"
 
 private val cache = HashSet<String>()
 private var initialized = false
 
-fun SharedPreferences.starContributor(contributor: Contributor): Set<String> {
-    if (!initialized) updateCache()
-
-    return if (!cache.contains(contributor.login)) {
-        edit().putString(STARRED_CONTRIBUTORS, cache.apply { add(contributor.login) }.joinToString(separator = ","))
-                .apply()
-        updateCache()
-    } else {
-        cache
-    }
-}
-
-fun SharedPreferences.unStarContributor(contributor: Contributor): Set<String> {
-    if (!initialized) updateCache()
-
-    return if (cache.contains(contributor.login)) {
-        edit().putString(STARRED_CONTRIBUTORS, cache.apply { remove(contributor.login) }.joinToString(separator = ","))
-                .apply()
-        updateCache()
-    } else {
-        cache
-    }
-}
-
-
-fun SharedPreferences.isContributorStarred(contributor: Contributor): Boolean {
-    if (!initialized) updateCache()
+fun SharedPreferences.isContributorFavorited(contributor: Contributor): Boolean {
+    if (!initialized) loadFavoritedContributors()
 
     return cache.contains(contributor.login)
 }
 
-private fun SharedPreferences.getStarredContributors(): Set<String> {
-    return getString(STARRED_CONTRIBUTORS, null)?.let {
-        cache.run {
-            clear()
-            addAll(it.split(","))
-        }
-        cache
-    } ?: emptySet<String>()
+fun SharedPreferences.toggleFavorite(contributor: Contributor) {
+    when (isContributorFavorited(contributor)) {
+        true -> cache.remove(contributor.login)
+        false -> cache.add(contributor.login)
+    }
+    persist(cache)
 }
 
-private fun SharedPreferences.updateCache(): Set<String> {
+private fun SharedPreferences.loadFavoritedContributors() {
     cache.clear()
-    cache.addAll(getStarredContributors())
-    return cache
+    cache.addAll(getString(FAVORITE_KEY, null)?.split(",") ?: emptyList())
+}
+
+private fun SharedPreferences.persist(cache: Set<String>) {
+    edit().putString(FAVORITE_KEY, cache.joinToString(separator = ",")).apply()
 }

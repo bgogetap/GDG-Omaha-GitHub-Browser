@@ -11,9 +11,9 @@ import com.gdgomaha.githubbrowser.R
 import com.gdgomaha.githubbrowser.extensions.getColor
 import com.gdgomaha.githubbrowser.model.Contributor
 
-internal class ContributorViewHolder(
+class ContributorViewHolder(
         itemView: View,
-        private val starredContributorHelper: StarredContributorHelper
+        private val favoriteService: FavoriteService
 ) : RecyclerView.ViewHolder(itemView) {
 
     @BindView(R.id.tv_user_name) lateinit var userNameText: TextView
@@ -24,18 +24,18 @@ internal class ContributorViewHolder(
     init {
         ButterKnife.bind(this, itemView)
         itemView.setOnLongClickListener {
-            contributor?.let { starredContributorHelper.toggleStar(it) }
+            contributor?.let { favoriteService.toggleStar(it) }
             true
         }
     }
 
-    fun bind(contributor: Contributor) {
-        this.contributor = contributor
-        userNameText.text = contributor.login
+    fun bind(contributor: ContributorAdapter.ResolvedContributor) {
+        this.contributor = contributor.contributor
+        userNameText.text = contributor.contributor.login
         itemView.setBackgroundColor(itemView.getColor(
-                if (starredContributorHelper.isContributorStarred(contributor)) R.color.starred_background else R.color.un_starred_background))
+                if (contributor.favorited) R.color.starred_background else R.color.un_starred_background))
         Glide.with(avatarImageView)
-                .load(contributor.avatarUrl)
+                .load(contributor.contributor.avatarUrl)
                 .into(avatarImageView)
     }
 }

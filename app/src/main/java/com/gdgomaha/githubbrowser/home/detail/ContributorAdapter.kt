@@ -11,28 +11,29 @@ import com.jakewharton.rxrelay2.PublishRelay
 import java.util.*
 import javax.inject.Inject
 
-internal class ContributorAdapter @Inject constructor(
-        starsUpdatedEvents: PublishRelay<Set<String>>,
-        private val starredContributorHelper: StarredContributorHelper
+class ContributorAdapter @Inject constructor(
+        starsUpdatedEvents: PublishRelay<Boolean>,
+        private val favoriteService: FavoriteService
 ) : RecyclerView.Adapter<ContributorViewHolder>() {
 
-    private val data = ArrayList<Contributor>()
+    private val data = ArrayList<ResolvedContributor>()
 
     init {
         setHasStableIds(true)
-        starsUpdatedEvents.subscribe { notifyDataSetChanged() }
+        starsUpdatedEvents.subscribe { setData(data.map { it.contributor }) }
     }
 
     fun setData(contributors: List<Contributor>) {
-        val diffResult = DiffUtil.calculateDiff(SimpleDiffCallback(data, contributors))
+        val newData = contributors.map { ResolvedContributor(it, favoriteService.isContributorStarred(it)) }
+        val diffResult = DiffUtil.calculateDiff(SimpleDiffCallback(data, newData))
         data.clear()
-        data.addAll(contributors)
+        data.addAll(newData)
         diffResult.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContributorViewHolder {
         return ContributorViewHolder(LayoutInflater.from(parent.context)
-                .inflate(R.layout.view_user_list_item, parent, false), starredContributorHelper)
+                .inflate(R.layout.view_user_list_item, parent, false), favoriteService)
     }
 
     override fun onBindViewHolder(holder: ContributorViewHolder, position: Int) {
@@ -43,5 +44,12 @@ internal class ContributorAdapter @Inject constructor(
         return data.size
     }
 
-    override fun getItemId(position: Int) = data[position].id
+    override fun getItemId(position: Int) = data[position].contributor.id
+
+    data class ResolvedContributor(val contributor: Contributor, val favorited: Boolean) : SimpleDiffCallback.RecyclerItem {
+
+        override fun itemId(): Long {
+            return contributor.id
+        }
+    }
 }
