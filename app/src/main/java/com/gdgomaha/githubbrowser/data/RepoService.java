@@ -19,5 +19,5 @@ public interface RepoService {
     Single<Repo> getRepo(@Path("owner") String owner, @Path("repoName") String repoName);
 
     @GET
-    Single<List<Contributor>> getContributers(@Url String url);
+    Single<List<Contributor>> getContributors(@Url String url);
 }

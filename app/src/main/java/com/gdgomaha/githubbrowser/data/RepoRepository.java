@@ -93,7 +93,7 @@ public final class RepoRepository {
     }
 
     private Single<List<Contributor>> apiContributors(String url) {
-        return service.getContributers(url)
+        return service.getContributors(url)
                 .doOnSuccess(contributors -> contributorsCache.put(url, contributors));
     }
 
