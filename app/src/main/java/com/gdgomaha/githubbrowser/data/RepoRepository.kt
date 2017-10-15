@@ -67,7 +67,7 @@ class RepoRepository @Inject constructor(private val service: RepoService) {
     }
 
     private fun apiContributors(url: String): Single<List<Contributor>> {
-        return service.getContributers(url)
+        return service.getContributors(url)
                 .doOnSuccess { contributors -> contributorsCache.put(url, contributors) }
     }
 
