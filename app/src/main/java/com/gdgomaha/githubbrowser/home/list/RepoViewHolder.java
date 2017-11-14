@@ -38,7 +38,8 @@ final class RepoViewHolder extends RecyclerView.ViewHolder {
         forkCountText.setText(NumberFormat.getInstance().format(repo.getForksCount()));
     }
 
-    @OnClick(R.id.repo_list_item_parent) void clicked() {
+    @OnClick(R.id.repo_list_item_parent)
+    void clicked() {
         if (repo != null) {
             presenter.repoSelected(repo);
         }

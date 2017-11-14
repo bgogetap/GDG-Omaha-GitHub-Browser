@@ -10,11 +10,13 @@ import java.io.IOException;
 
 public class ZonedDateTimeAdapter extends TypeAdapter<ZonedDateTime> {
 
-    @Override public void write(JsonWriter out, ZonedDateTime value) throws IOException {
+    @Override
+    public void write(JsonWriter out, ZonedDateTime value) throws IOException {
         out.value(value != null ? value.toString() : null);
     }
 
-    @Override public ZonedDateTime read(JsonReader in) throws IOException {
+    @Override
+    public ZonedDateTime read(JsonReader in) throws IOException {
         return ZonedDateTime.parse(in.nextString());
     }
 }

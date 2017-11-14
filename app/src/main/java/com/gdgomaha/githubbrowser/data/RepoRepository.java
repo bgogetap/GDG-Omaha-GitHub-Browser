@@ -23,7 +23,8 @@ public final class RepoRepository {
     private Map<String, List<Repo>> repoCache = new LinkedHashMap<>();
     private Map<String, List<Contributor>> contributorsCache = new LinkedHashMap<>();
 
-    @Inject RepoRepository(RepoService service) {
+    @Inject
+    RepoRepository(RepoService service) {
         this.service = service;
     }
 

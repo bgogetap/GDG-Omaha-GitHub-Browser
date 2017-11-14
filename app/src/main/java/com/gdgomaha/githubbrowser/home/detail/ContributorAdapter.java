@@ -23,16 +23,19 @@ final class ContributorAdapter extends RecyclerView.Adapter<ContributorViewHolde
         diffResult.dispatchUpdatesTo(this);
     }
 
-    @Override public ContributorViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    @Override
+    public ContributorViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ContributorViewHolder(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.view_user_list_item, parent, false));
     }
 
-    @Override public void onBindViewHolder(ContributorViewHolder holder, int position) {
+    @Override
+    public void onBindViewHolder(ContributorViewHolder holder, int position) {
         holder.bind(data.get(position));
     }
 
-    @Override public int getItemCount() {
+    @Override
+    public int getItemCount() {
         return data.size();
     }
 }

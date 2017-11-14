@@ -42,13 +42,15 @@ public final class RepoDetailFragment extends BaseFragment {
     @BindView(R.id.loading_indicator) View loadingIndicator;
     @BindView(R.id.contributor_loading_indicator) View contributorLoadingIndicator;
 
-    @Override protected void onViewBound() {
+    @Override
+    protected void onViewBound() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(new ContributorAdapter());
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
     }
 
-    @Override protected Disposable[] subscribeToViewModel() {
+    @Override
+    protected Disposable[] subscribeToViewModel() {
         return new Disposable[]{
                 viewModel.repoName().subscribe(repoNameText::setText),
                 viewModel.repoDescription().subscribe(repoDescriptionText::setText),
@@ -62,7 +64,8 @@ public final class RepoDetailFragment extends BaseFragment {
         };
     }
 
-    @Override protected int layoutRes() {
+    @Override
+    protected int layoutRes() {
         return R.layout.fragment_detail;
     }
 }

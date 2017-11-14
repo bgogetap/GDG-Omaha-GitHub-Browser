@@ -10,7 +10,8 @@ public class MyApplication extends DaggerApplication {
 
     protected ApplicationComponent component;
 
-    @Override public void onCreate() {
+    @Override
+    public void onCreate() {
         component = initComponent();
         super.onCreate();
 

@@ -25,7 +25,8 @@ public abstract class BaseFragment extends DaggerFragment {
 
     private Unbinder unbinder;
 
-    @Nullable @Override
+    @Nullable
+    @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(layoutRes(), container, false);
         unbinder = ButterKnife.bind(this, view);
@@ -42,7 +43,8 @@ public abstract class BaseFragment extends DaggerFragment {
         return new Disposable[0];
     }
 
-    @Override public void onDestroyView() {
+    @Override
+    public void onDestroyView() {
         super.onDestroyView();
         if (unbinder != null) {
             unbinder.unbind();

@@ -53,11 +53,13 @@ public final class Repo implements SimpleDiffCallback.RecyclerItem {
         return updatedDate;
     }
 
-    @Override public long itemId() {
+    @Override
+    public long itemId() {
         return getId();
     }
 
-    @Override public boolean equals(Object o) {
+    @Override
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
@@ -74,7 +76,8 @@ public final class Repo implements SimpleDiffCallback.RecyclerItem {
         return updatedDate.equals(repo.updatedDate);
     }
 
-    @Override public int hashCode() {
+    @Override
+    public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + name.hashCode();
         result = 31 * result + description.hashCode();

@@ -30,21 +30,25 @@ public final class RepoListAdapter extends RecyclerView.Adapter<RepoViewHolder> 
         result.dispatchUpdatesTo(this);
     }
 
-    @Override public RepoViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    @Override
+    public RepoViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.view_repo_list_item, viewGroup, false);
         return new RepoViewHolder(view, presenter);
     }
 
-    @Override public void onBindViewHolder(RepoViewHolder repoViewHolder, int position) {
+    @Override
+    public void onBindViewHolder(RepoViewHolder repoViewHolder, int position) {
         repoViewHolder.bind(data.get(position));
     }
 
-    @Override public int getItemCount() {
+    @Override
+    public int getItemCount() {
         return data.size();
     }
 
-    @Override public long getItemId(int position) {
+    @Override
+    public long getItemId(int position) {
         return data.get(position).getId();
     }
 }

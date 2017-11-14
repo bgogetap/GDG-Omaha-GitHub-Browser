@@ -22,16 +22,19 @@ public final class RepoListFragment extends BaseFragment {
     @BindView(R.id.loading_indicator) View loadingIndicator;
     @BindView(R.id.tv_error) TextView errorText;
 
-    @Override protected void onViewBound() {
+    @Override
+    protected void onViewBound() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(new RepoListAdapter(presenter));
     }
 
-    @Override protected int layoutRes() {
+    @Override
+    protected int layoutRes() {
         return R.layout.fragment_list;
     }
 
-    @Override protected Disposable[] subscribeToViewModel() {
+    @Override
+    protected Disposable[] subscribeToViewModel() {
         return new Disposable[]{
                 viewModel.repos().subscribe(((RepoListAdapter) recyclerView.getAdapter())::setData),
                 viewModel.loadingVisibility().subscribe(loadingIndicator::setVisibility),

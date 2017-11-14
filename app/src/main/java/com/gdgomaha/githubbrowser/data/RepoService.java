@@ -1,7 +1,7 @@
 package com.gdgomaha.githubbrowser.data;
 
-import com.gdgomaha.githubbrowser.model.Repo;
 import com.gdgomaha.githubbrowser.model.Contributor;
+import com.gdgomaha.githubbrowser.model.Repo;
 
 import java.util.List;
 

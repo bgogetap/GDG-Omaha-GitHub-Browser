@@ -21,7 +21,8 @@ public final class Contributor implements SimpleDiffCallback.RecyclerItem {
         return avatarUrl;
     }
 
-    @Override public long itemId() {
+    @Override
+    public long itemId() {
         return getId();
     }
 }

@@ -31,7 +31,8 @@ public final class RepoDetailViewModel {
     private final BehaviorRelay<Integer> contributorContentVisibilityRelay = BehaviorRelay.createDefault(View.GONE);
     private final BehaviorRelay<Integer> contributorLoadingVisibilityRelay = BehaviorRelay.createDefault(View.VISIBLE);
 
-    @Inject RepoDetailViewModel() {
+    @Inject
+    RepoDetailViewModel() {
 
     }
 

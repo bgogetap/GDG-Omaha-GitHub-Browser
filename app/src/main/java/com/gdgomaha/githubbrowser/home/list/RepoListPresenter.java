@@ -11,11 +11,13 @@ import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
-@ScreenScope final class RepoListPresenter {
+@ScreenScope
+final class RepoListPresenter {
 
     private final Navigator navigator;
 
-    @Inject RepoListPresenter(
+    @Inject
+    RepoListPresenter(
             Navigator navigator,
             @ForScreen DisposableManager disposableManager,
             RepoRepository repoRepository,

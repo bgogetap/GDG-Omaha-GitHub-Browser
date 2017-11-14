@@ -14,19 +14,23 @@ public final class SimpleDiffCallback extends DiffUtil.Callback {
         this.newList = newList;
     }
 
-    @Override public int getOldListSize() {
+    @Override
+    public int getOldListSize() {
         return oldList.size();
     }
 
-    @Override public int getNewListSize() {
+    @Override
+    public int getNewListSize() {
         return newList.size();
     }
 
-    @Override public boolean areItemsTheSame(int oldPosition, int newPosition) {
+    @Override
+    public boolean areItemsTheSame(int oldPosition, int newPosition) {
         return oldList.get(oldPosition).itemId() == newList.get(newPosition).itemId();
     }
 
-    @Override public boolean areContentsTheSame(int oldPosition, int newPosition) {
+    @Override
+    public boolean areContentsTheSame(int oldPosition, int newPosition) {
         return oldList.get(oldPosition).equals(newList.get(newPosition));
     }
 
