@@ -6,7 +6,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-beta7'
+        classpath 'com.android.tools.build:gradle:3.0.0'
     }
 }
 
@@ -19,13 +19,14 @@ allprojects {
 }
 
 ext {
-    compileSdkVersion = 25
-    buildToolsVersion = "25.0.2"
+    compileSdkVersion = 26
+    buildToolsVersion = "26.0.3"
     minSdkVersion = 21
-    targetSdkVersion = 25
-    supportLibraryVersion = '25.4.0'
+    targetSdkVersion = 26
+    supportLibraryVersion = '26.1.0'
     retrofitVersion = '2.3.0'
     daggerVersion = '2.11'
+    butterKnifeVersion = '8.8.1'
 }
 
 task clean(type: Delete) {

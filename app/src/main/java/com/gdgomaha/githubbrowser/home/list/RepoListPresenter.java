@@ -23,6 +23,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
         this.navigator = navigator;
         disposableManager.add(repoRepository.getTrendingRepos()
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(__ -> viewModel.toggleLoading())
                 .subscribe(viewModel::processRepos));
     }
 

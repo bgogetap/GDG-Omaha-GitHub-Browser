@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder;
 
 import org.threeten.bp.ZonedDateTime;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -17,7 +18,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public final class NetworkModule {
 
-    private static final String BASE_URL = "https://api.github.com/";
+    @Provides
+    @Named("base_url")
+    static String provideBaseUrl() {
+        return "https://api.github.com/";
+    }
 
     @Provides
     @Singleton
@@ -26,13 +31,14 @@ public final class NetworkModule {
                 .registerTypeAdapter(ZonedDateTime.class, new ZonedDateTimeAdapter())
                 .create();
     }
+
     @Provides
     @Singleton
-    Retrofit provideRetrofit(Gson gson) {
+    Retrofit provideRetrofit(Gson gson, @Named("base_url") String baseUrl) {
         return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
-                .baseUrl(BASE_URL)
+                .baseUrl(baseUrl)
                 .build();
     }
 }

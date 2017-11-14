@@ -11,9 +11,11 @@ import javax.inject.Named;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-@ScreenScope final class RepoDetailPresenter {
+@ScreenScope
+final class RepoDetailPresenter {
 
-    @Inject RepoDetailPresenter(
+    @Inject
+    RepoDetailPresenter(
             @Named("owner") String owner,
             @Named("repo") String repoName,
             RepoRepository repoRepository,

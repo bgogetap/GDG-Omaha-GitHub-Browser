@@ -6,9 +6,12 @@ import dagger.android.AndroidInjector;
 import dagger.android.support.DaggerApplication;
 import timber.log.Timber;
 
-public final class MyApplication extends DaggerApplication {
+public class MyApplication extends DaggerApplication {
+
+    protected ApplicationComponent component;
 
     @Override public void onCreate() {
+        component = initComponent();
         super.onCreate();
 
         if (BuildConfig.DEBUG) {
@@ -16,7 +19,14 @@ public final class MyApplication extends DaggerApplication {
         }
     }
 
-    @Override protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
-        return DaggerApplicationComponent.builder().applicationModule(new ApplicationModule(this)).build();
+    protected ApplicationComponent initComponent() {
+        return DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(this))
+                .build();
+    }
+
+    @Override
+    protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+        return component;
     }
 }
